@@ -4,6 +4,7 @@ pipeline {
           label 'mypc'
         }    
     }
+	
     parameters {      
 	choice(name: 'CHOICE', choices: ['Dev','Qa', 'Master'], description: 'Select branch')
        
@@ -11,6 +12,7 @@ pipeline {
     stages {
        
         stage('Checkout') {
+		
             steps {
                 
              checkout([$class: 'GitSCM', branches: [[name:"${CHOICE}"  ]], 
@@ -22,10 +24,13 @@ pipeline {
         }
         
         stage('build'){
+		tools {
+        	maven 'Maven_home' 
+  			  }
         steps{
-           withMaven(maven: 'Maven_home') {
+          
             bat "mvn clean install package"
-             }
+           
            }
         }
         
