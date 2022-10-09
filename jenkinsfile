@@ -2,9 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Stage1') {
+        stage('Workspace clean') {
             steps {
-                echo 'Hello DevOps And Cloud'
+                echo 'Hello clean stage'
+            }
+        }
+		        stage('GIT Checkout') {
+            steps {
+                echo 'Hello Checkout stage'
+            }
+        }
+		        stage('Build') {
+            steps {
+                echo 'Hello Build stage'
+            }
+        }
+		        stage('Store Artifact') {
+            steps {
+                echo 'Hello Store Artifact stage'
             }
         }
     }
